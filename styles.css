@@ -1,0 +1,209 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4facfe 0%, #3a7bd5 50%, #2563c7 100%);
+    overflow: hidden;
+}
+
+/* ── Sección principal ── */
+#busquedaClima {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 28px;
+    padding: 44px 40px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Título ── */
+#busqueda > div:first-child {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 28px;
+    display: block;
+    grid-column: 1 / -1;
+}
+
+/* ── Fila de búsqueda ── */
+#busqueda {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0 !important;
+}
+
+#busqueda > div:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ── Input ── */
+#cityInput {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 14px !important;
+    padding: 14px 18px !important;
+    font-size: 1rem;
+    color: #fff !important;
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#cityInput::placeholder { color: rgba(255, 255, 255, 0.6); }
+
+#cityInput:focus {
+    background: rgba(255, 255, 255, 0.26) !important;
+    border-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* ── Botón buscar ── */
+#btnBusqueda {
+    background: rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 14px !important;
+    padding: 12px 18px !important;
+    color: #fff !important;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.15s;
+}
+
+#btnBusqueda:hover { background: rgba(255, 255, 255, 0.35) !important; transform: scale(1.05); }
+#btnBusqueda:active { transform: scale(0.97); }
+
+/* ── Label ── */
+label[for="busquedaCiudad"] { display: none; }
+
+/* ── Sugerencias ── */
+#sugerencia ul {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+}
+
+#sugerencia li {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    animation: slidein 0.2s ease;
+}
+
+#sugerencia li:hover { background: rgba(255, 255, 255, 0.28); }
+
+#sugerencia li a {
+    display: block;
+    padding: 12px 16px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+@keyframes slidein {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Estado vacío (infoClima antes de buscar) ── */
+#infoClima:empty::before {
+    content: "☁️";
+    display: block;
+    font-size: 3rem;
+    text-align: center;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+#infoClima:empty::after {
+    content: "Search for a city to see the weather";
+    display: block;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* ── Info del clima ── */
+#infoClima {
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#infoClima > div {
+    animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Tarjeta del clima - override Tailwind ── */
+#infoClima > div {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    max-width: 480px !important;
+    margin: 16px auto 0 !important;
+    padding: 28px 24px !important;
+    animation: aparecer 0.4s ease;
+}
+
+/* Nombre de la ciudad */
+#infoClima h2 {
+    color: #fff !important;
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 4px !important;
+}
+
+/* Temperatura */
+#infoClima p:has(+ p) {
+    color: #fff !important;
+    font-size: 3.2rem !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+}
+
+/* Descripción */
+#infoClima .capitalize {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px !important;
+}
+
+/* Fila de detalles (humedad, viento, sensación) */
+#infoClima .flex.justify-around {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 14px !important;
+    padding: 14px !important;
+    color: #fff !important;
+}
+
+/* Icono del clima */
+#infoClima img {
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+    width: 80px !important;
+    height: 80px !important;
+}

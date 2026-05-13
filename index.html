@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi App de Clima</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+
+    <section id="busquedaClima">
+        <div class="grid grid-flow-col gap-4" id="busqueda">
+            <div>Mi App de Clima</div>
+            <div>
+                <input type="text" id="cityInput" placeholder="Ingrese el nombre de la ciudad" class="border border-gray-300 rounded px-2 py-1">
+                <button id="btnBusqueda" class="bg-blue-500 text-white px-4 py-1 rounded">Buscar</button>
+
+                <label for="busquedaCiudad">Busca una ciudad para obtener el clima</label>
+            </div>
+        </div>
+        <div id="sugerencia">
+            <ul>
+
+            </ul>
+        </div>
+    </section>
+
+    <section id="infoClima" class="mt-4">
+
+    </section>
+
+
+</body>
+<script src="script.js"></script>
+</html>
